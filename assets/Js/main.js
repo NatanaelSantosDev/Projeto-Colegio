@@ -1,10 +1,25 @@
 window.onload = function () {
-    document.querySelector(".menu-opener").addEventListener("click", function () {
-        if (document.querySelector(".menu nav").style.display == 'flex') {
-            document.querySelector(".menu nav").style.display = "none";
+    const menuOpener = document.querySelector(".menu-opener");
+    const menuNav = document.querySelector(".menu nav");
+
+    menuOpener.addEventListener("click", function () {
+        if (menuNav.style.display === 'flex') {
+            menuNav.style.display = "none";
         } else {
-            document.querySelector(".menu nav").style.display = 'flex';
+            menuNav.style.display = 'flex';
         }
+    });
+
+    const menuItems = menuNav.querySelectorAll("a");
+    menuItems.forEach(item => {
+        item.addEventListener("click", function () {
+
+            menuItems.forEach(item => item.parentElement.classList.remove("active"));
+
+            this.parentElement.classList.add("active");
+
+            menuNav.style.display = 'none';
+        });
     });
 };
 
