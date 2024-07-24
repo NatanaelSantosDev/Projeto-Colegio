@@ -46,6 +46,41 @@ function subirSeta() {
     });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.querySelector(".banner");
+    const pointers = document.querySelectorAll(".pointer");
+    const images = [
+        "midia/alunos1.jpg",
+        "midia/alunos2.jpg",
+        "midia/alunos3.jpg"
+    ];
+    let currentImageIndex = 0;
+
+    function changeBackgroundImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        banner.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        updatePointers();
+    }
+
+    function updatePointers() {
+        pointers.forEach((pointer, index) => {
+            if (index === currentImageIndex) {
+                pointer.classList.add("active");
+            } else {
+                pointer.classList.remove("active");
+            }
+        });
+    }
+
+    setInterval(changeBackgroundImage, 7000);
+
+    banner.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+    updatePointers();
+});
+
+
+
+
 function sumir() {
     const seta = document.querySelector('.seta');
     if (window.scrollY === 0) {
